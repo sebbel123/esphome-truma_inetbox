@@ -9,7 +9,6 @@ namespace truma_inetbox {
 
 static const char *TAG = "truma_inetbox.linbus.esp32";
 
-// ----------------- Setup ESP32 UART -----------------
 void LinBusListener::setup_framework() {
   auto uartComp = this->parent_->get_uart();
   if (!uartComp) {
@@ -25,7 +24,6 @@ void LinBusListener::setup_framework() {
   uart_intr.rx_timeout_thresh = 10;
   uart_intr.txfifo_empty_intr_thresh = 10;
 
-  // UART Interrupt konfigurieren
   esp_err_t err = uart_intr_config(uart_num, &uart_intr);
   if (err != ESP_OK) {
     ESP_LOGE(TAG, "Failed to configure UART interrupts: %d", err);
@@ -34,7 +32,6 @@ void LinBusListener::setup_framework() {
   }
 }
 
-// ----------------- Schreibe LIN Antwort -----------------
 void LinBusListener::write_lin_answer_(const uint8_t *data, uint8_t len) {
   QUEUE_LOG_MSG log_msg{};
   log_msg.type = QUEUE_LOG_MSG_TYPE::VERBOSE_LIN_ANSWER_RESPONSE;
