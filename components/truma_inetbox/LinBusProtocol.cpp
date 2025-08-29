@@ -8,7 +8,6 @@ namespace truma_inetbox {
 
 static const char *TAG = "truma_inetbox.protocol";
 
-// ----------------- Prüfe LIN Frame -----------------
 bool LinBusProtocol::check_frame(const uint8_t *data, uint8_t len) {
   if (len == 0 || data == nullptr) {
     QUEUE_LOG_MSG log_msg{};
@@ -17,7 +16,7 @@ bool LinBusProtocol::check_frame(const uint8_t *data, uint8_t len) {
     return false;
   }
 
-  // Beispiel CRC-Check (Platzhalter)
+  // CRC-Check placeholder
   bool crc_ok = true;
   if (!crc_ok) {
     QUEUE_LOG_MSG log_msg{};
